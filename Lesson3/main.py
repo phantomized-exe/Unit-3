@@ -9,7 +9,12 @@ def divide(a: int, b: int):
         float: quotient
     """
 
-    pass  # replace this with your functioning code
+    try:
+        return a/b
+    except TypeError:
+        return "Parameter must be a number"
+    except ZeroDivisionError:
+        return "You can't divide by zero"
 
 
 def main():
