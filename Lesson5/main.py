@@ -25,3 +25,19 @@ for move in pokemon['moves']:
 for index,move in enumerate(pokemon['moves']):
     print(f"Move {index+1}: {move['move']['name']}")
 
+'''
+How does this work?
+
+Enumerate creates an object of the form
+
+((0, item),(1, item),(2, item),(3, item), ... )
+
+for all items in some iterable like a list. 
+
+This allows us to essentially access and use the index 
+like a variable through tuple unpacking
+
+When I write index,item
+it takes each tuple and assigns the first part to
+the variable index and the second part to item.
+'''
