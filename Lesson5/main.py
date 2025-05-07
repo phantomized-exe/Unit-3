@@ -16,3 +16,12 @@ for ability in pokemon['abilities']:
 
 for stat in pokemon['stats']:
     print(f"Name: {stat['stat']['name']} \t Value: {stat['base_stat']}")
+
+# expected HW solution
+for move in pokemon['moves']:
+    print(f"Move: {move['move']['name']}")
+
+# fancy, numbered homework solution
+for index,move in enumerate(pokemon['moves']):
+    print(f"Move {index+1}: {move['move']['name']}")
+
