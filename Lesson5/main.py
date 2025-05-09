@@ -28,7 +28,7 @@ for index,move in enumerate(pokemon['moves']):
 '''
 How does this work?
 
-Enumerate creates an object of the form
+Enumerate creates an object of tuples of the form
 
 ((0, item),(1, item),(2, item),(3, item), ... )
 
