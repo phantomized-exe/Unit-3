@@ -1,15 +1,15 @@
 '''
 start a virtual enviroment
-pip install pillow
+pip install pillow (*NOT* PIL, I know it's weird)
 pip install requests
 On windows, tkinter is installed by default
 '''
 
 import requests
-import io # needed to open image from URL and convert from raw bytes
+import io # needed to process the bytes that we will download the sprite in
 from pathlib import Path # if you want to create a cache of sprites
 import tkinter as tk
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk # allows us to manipulate images
 import random
 
 
@@ -34,6 +34,15 @@ formatted_data = {
 
 # ---------- GUI Stuff ----------
 
+root = tk.Tk()
+root.title("Random Pokémon Generator")
+root.geometry("300x300")
+root.resizable(False, False)
+        
+img_bytes = requests.get(formatted_data["sprite"],timeout=10).content
+pillow_image = Image.open(io.BytesIO(img_bytes)).resize((200,200))
+tk_image = ImageTk.PhotoImage(pillow_image)
+
 def show_pokemon():
     try:
         root.img_label.photo = tk_image
@@ -45,15 +54,9 @@ def show_pokemon():
                     f"Type: {types}\n"
                     f"Weight: {formatted_data['weight_kg']} kg"
         )
-    except Exception as err:
-        root.info_label.config(text=f"Error: {err}")
+    except Exception as e:
+        root.info_label.config(text=f"Error: {e}")
         
-
-root = tk.Tk()
-root.title("Random Pokémon Generator")
-root.geometry("300x300")
-root.resizable(False, False)
-
 # widgets
 root.img_label = tk.Label()
 root.img_label.pack(pady=(10, 5))
@@ -67,8 +70,6 @@ root.btn = tk.Button(
 )
 root.btn.pack(fill="x", padx=20, pady=5)
 
-img_bytes = requests.get(formatted_data["sprite"],timeout=10).content
-pillow_image = Image.open(io.BytesIO(img_bytes)).resize((200,200))
-tk_image = ImageTk.PhotoImage(pillow_image)
+
 
 root.mainloop()
