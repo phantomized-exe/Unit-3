@@ -36,7 +36,7 @@ formatted_data = {
 
 root = tk.Tk()
 root.title("Random Pokémon Generator")
-root.geometry("300x300")
+root.geometry("400x400")
 root.resizable(False, False)
         
 img_bytes = requests.get(formatted_data["sprite"],timeout=10).content
